@@ -7,11 +7,10 @@ import { Team, CreateTeamPayload } from '../domain/team.model';
 import { TeamApiDto } from './dtos/team-api.dto';
 import { TeamApiMapper } from './team-api-mapper';
 
-const BASE_URL = 'http://127.0.0.1:8000/api/v1/teams';
-
 /**
  * Adaptador HTTP — implementa el puerto del dominio.
- * Es el ÚNICO lugar que conoce URLs, HttpClient y DTOs.
+ * Usa rutas RELATIVAS ('/teams') porque el baseUrlInterceptor
+ * antepone la URL base automáticamente.
  */
 @Service({ autoProvided: false })
 export class TeamHttpAdapter extends TeamRepository {
@@ -19,24 +18,24 @@ export class TeamHttpAdapter extends TeamRepository {
 
   override getAll(): Observable<Team[]> {
     return this.http
-      .get<TeamApiDto[]>(`${BASE_URL}/`)
+      .get<TeamApiDto[]>('/teams/')
       .pipe(map((dtos) => dtos.map(TeamApiMapper.toDomain)));
   }
 
   override getById(id: string): Observable<Team> {
     return this.http
-      .get<TeamApiDto>(`${BASE_URL}/${id}`)
+      .get<TeamApiDto>(`/teams/${id}`)
       .pipe(map(TeamApiMapper.toDomain));
   }
 
   override create(payload: CreateTeamPayload): Observable<Team> {
     const dto = TeamApiMapper.toCreateDto(payload);
     return this.http
-      .post<TeamApiDto>(`${BASE_URL}/`, dto)
+      .post<TeamApiDto>('/teams/', dto)
       .pipe(map(TeamApiMapper.toDomain));
   }
 
   override delete(id: string): Observable<void> {
-    return this.http.delete<void>(`${BASE_URL}/${id}`);
+    return this.http.delete<void>(`/teams/${id}`);
   }
 }

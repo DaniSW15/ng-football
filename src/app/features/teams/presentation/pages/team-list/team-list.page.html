@@ -1,23 +1,22 @@
 <div class="container">
-  <h1>⚽ Equipos de Fútbol</h1>
+  <app-page-header title="⚽ Equipos de Fútbol" subtitle="Gestiona tus equipos favoritos">
+    <span class="badge">{{ store.teamCount() }} equipos</span>
+  </app-page-header>
 
   <app-team-form (teamCreated)="onTeamCreated($event)" />
 
-  @if (store.isLoading()) {
-    <p>Cargando equipos...</p>
-  }
-
   @if (store.error(); as error) {
-    <p class="error">❌ {{ error }}</p>
+    <app-error-message [message]="error" />
   }
-
-  <p><strong>Total:</strong> {{ store.teamCount() }} equipos</p>
 
   <div class="team-grid">
     @for (team of store.teams(); track team.id) {
       <app-team-card [team]="team" />
     } @empty {
-      <p>No hay equipos registrados aún. ¡Crea el primero!</p>
+      <app-empty-state
+        icon="⚽"
+        message="No hay equipos registrados aún. ¡Crea el primero!"
+      />
     }
   </div>
 </div>

@@ -1,11 +1,25 @@
 import { TestBed } from '@angular/core/testing';
 import { CreateTeamUsecase } from './create-team-usecase';
+import { TeamRepository } from '../domain/team-repository';
 
 describe('CreateTeamUsecase', () => {
   let service: CreateTeamUsecase;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        CreateTeamUsecase,
+        {
+          provide: TeamRepository,
+          useValue: {
+            getAll: () => {},
+            getById: () => {},
+            create: () => {},
+            delete: () => {},
+          },
+        },
+      ],
+    });
     service = TestBed.inject(CreateTeamUsecase);
   });
 
