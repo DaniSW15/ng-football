@@ -1,16 +1,12 @@
-import { Component, inject, output } from '@angular/core';
-import {
-  ReactiveFormsModule,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { Component, output, signal } from '@angular/core';
+import { form, FormField, FormRoot } from '@angular/forms/signals';
 import { CreateTeamPayload } from '../../../domain/team.model';
+import { teamSchema } from '../../schemas/team.schema';
 
 @Component({
   selector: 'app-team-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [FormField, FormRoot],
   templateUrl: './team-form.html',
   styles: [
     `
@@ -33,8 +29,9 @@ import { CreateTeamPayload } from '../../../domain/team.model';
         border-radius: 4px;
         font-size: 1rem;
       }
-      input.ng-invalid.ng-touched {
-        border-color: red;
+      .error-hint {
+        color: #d32f2f;
+        font-size: 0.85rem;
       }
       button {
         padding: 0.6rem 1.2rem;
@@ -54,23 +51,25 @@ import { CreateTeamPayload } from '../../../domain/team.model';
   ],
 })
 export class TeamForm {
-  private readonly fb = inject(FormBuilder);
-
   readonly teamCreated = output<CreateTeamPayload>();
 
-  readonly form: FormGroup = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(2)]],
-    country: ['', [Validators.required, Validators.minLength(2)]],
-    foundedYear: [null, [Validators.required, Validators.min(1850), Validators.max(2030)]],
+  readonly teamModel = signal<CreateTeamPayload>({
+    name: '',
+    country: '',
+    foundedYear: 1900,
   });
 
-  onSubmit(): void {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
-
-    this.teamCreated.emit(this.form.value as CreateTeamPayload);
-    this.form.reset();
-  }
+  // El formulario consume el esquema componible desacoplado
+  readonly teamForm = form(this.teamModel, teamSchema, {
+    submission: {
+      action: async (field) => {
+        this.teamCreated.emit(field().value());
+        this.teamModel.set({
+          name: '',
+          country: '',
+          foundedYear: 1900,
+        });
+      },
+    },
+  });
 }

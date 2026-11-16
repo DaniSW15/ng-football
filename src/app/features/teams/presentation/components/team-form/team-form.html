@@ -1,24 +1,39 @@
 <h2>Agregar Equipo</h2>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formRoot]="teamForm">
   <label>
     Nombre
-    <input formControlName="name" placeholder="Ej: Real Madrid" />
+    <input [formField]="teamForm.name" placeholder="Ej: Real Madrid" />
+    @if (teamForm.name().invalid() && teamForm.name().touched()) {
+      <span class="error-hint">El nombre es requerido (mínimo 2 caracteres)</span>
+    }
   </label>
 
   <label>
     País
-    <input formControlName="country" placeholder="Ej: Spain" />
+    <input [formField]="teamForm.country" placeholder="Ej: Spain" />
+    @if (teamForm.country().invalid() && teamForm.country().touched()) {
+      <span class="error-hint">El país es requerido (mínimo 2 caracteres)</span>
+    }
   </label>
 
   <label>
     Año de fundación
     <input
-      formControlName="foundedYear"
       type="number"
+      [formField]="teamForm.foundedYear"
       placeholder="Ej: 1902"
     />
+    @if (teamForm.foundedYear().invalid() && teamForm.foundedYear().touched()) {
+      <span class="error-hint">Año válido entre 1850 y 2030</span>
+    }
   </label>
 
-  <button type="submit" [disabled]="form.invalid">Crear equipo</button>
+  <button type="submit" [disabled]="teamForm().submitting() || teamForm().invalid()">
+    @if (teamForm().submitting()) {
+      Creando...
+    } @else {
+      Crear equipo
+    }
+  </button>
 </form>
