@@ -9,9 +9,9 @@ export const TEAMS_ROUTES: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('./presentation/pages/team-list/team-list.page').then(
-            (m) => m.TeamListPage
-          ),
+          import(
+            '@features/teams/presentation/pages/team-list/team-list.page'
+          ).then((m) => m.TeamListPage),
       },
     ],
   },
