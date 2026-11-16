@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>⚽ Equipos de Fútbol</h1>
+
+  <app-team-form (teamCreated)="onTeamCreated($event)" />
+
+  @if (store.isLoading()) {
+    <p>Cargando equipos...</p>
+  }
+
+  @if (store.error(); as error) {
+    <p class="error">❌ {{ error }}</p>
+  }
+
+  <p><strong>Total:</strong> {{ store.teamCount() }} equipos</p>
+
+  <div class="team-grid">
+    @for (team of store.teams(); track team.id) {
+      <app-team-card [team]="team" />
+    } @empty {
+      <p>No hay equipos registrados aún. ¡Crea el primero!</p>
+    }
+  </div>
+</div>

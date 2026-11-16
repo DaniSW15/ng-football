@@ -1,0 +1,24 @@
+<h2>Agregar Equipo</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label>
+    Nombre
+    <input formControlName="name" placeholder="Ej: Real Madrid" />
+  </label>
+
+  <label>
+    País
+    <input formControlName="country" placeholder="Ej: Spain" />
+  </label>
+
+  <label>
+    Año de fundación
+    <input
+      formControlName="foundedYear"
+      type="number"
+      placeholder="Ej: 1902"
+    />
+  </label>
+
+  <button type="submit" [disabled]="form.invalid">Crear equipo</button>
+</form>
