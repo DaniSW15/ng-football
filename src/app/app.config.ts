@@ -7,10 +7,12 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 import { routes } from './app.routes';
 import {
+  authInterceptor,
   baseUrlInterceptor,
   errorHandlerInterceptor,
   loadingInterceptor,
 } from '@core';
+import { AUTH_PROVIDERS } from '@features/auth/auth.providers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,9 +21,11 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([
         baseUrlInterceptor,
-        loadingInterceptor,
         errorHandlerInterceptor,
+        loadingInterceptor,
+        authInterceptor,
       ])
     ),
+    ...AUTH_PROVIDERS,
   ],
 };

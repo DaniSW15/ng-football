@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { LoadingSpinner } from '@shared';
+import { AuthStore } from '@features/auth/presentation/state/auth-store';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, LoadingSpinner],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, LoadingSpinner],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {}
+export class App {
+  protected readonly authStore = inject(AuthStore);
+}

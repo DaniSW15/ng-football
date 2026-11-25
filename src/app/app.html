@@ -1,2 +1,28 @@
 <app-loading-spinner />
-<router-outlet />
+
+<nav class="main-nav">
+  <div class="nav-brand">⚽ Football Manager</div>
+
+  <div class="nav-links">
+    <a routerLink="/teams" routerLinkActive="active">Equipos</a>
+    <a routerLink="/competitions" routerLinkActive="active">Competiciones</a>
+  </div>
+
+  <div class="nav-auth">
+    @if (authStore.isAuthenticated() && authStore.user(); as user) {
+      <a routerLink="/auth/sessions" routerLinkActive="active" class="user-pill">
+        👤 {{ user.fullName }} <span class="role-tag">{{ user.role }}</span>
+      </a>
+      <button type="button" class="btn-logout" (click)="authStore.logout()">
+        Salir
+      </button>
+    } @else {
+      <a routerLink="/auth/login" routerLinkActive="active">Entrar</a>
+      <a routerLink="/auth/register" routerLinkActive="active">Registro</a>
+    }
+  </div>
+</nav>
+
+<main>
+  <router-outlet />
+</main>

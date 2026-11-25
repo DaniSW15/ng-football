@@ -1,0 +1,75 @@
+<div class="container">
+  <app-page-header
+    title="🛡️ Mi Cuenta y Sesiones"
+    subtitle="Perfil autenticado y control de sesiones JWT activas"
+  >
+    <span class="badge">{{ store.activeSessionsCount() }} activas</span>
+  </app-page-header>
+
+  @if (store.error(); as error) {
+    <app-error-message [message]="error" />
+  }
+
+  @if (store.user(); as user) {
+    <section class="profile-card">
+      <div class="profile-info">
+        <h2>{{ user.fullName }}</h2>
+        <p>{{ user.email }}</p>
+        <div class="profile-badges">
+          <span class="role-badge">{{ user.role }}</span>
+          <span class="status-badge" [class.active]="user.isActive">
+            {{ user.isActive ? 'Cuenta activa' : 'Inactiva' }}
+          </span>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button class="btn-secondary" (click)="store.loadSessions()">
+          🔄 Actualizar
+        </button>
+        <button class="btn-danger" (click)="onLogout()">
+          🚪 Cerrar sesión actual
+        </button>
+      </div>
+    </section>
+  }
+
+  <h3>Historial de sesiones</h3>
+
+  @if (store.isLoading()) {
+    <p>Cargando sesiones...</p>
+  }
+
+  <div class="sessions-grid">
+    @for (session of store.sessions(); track session.id) {
+      <article class="session-card" [class.revoked]="!session.isActive">
+        <div class="session-header">
+          <span class="status-pill" [class.active]="session.isActive">
+            {{ session.isActive ? '🟢 Activa' : '🔴 Revocada' }}
+          </span>
+          @if (session.isActive) {
+            <button class="btn-revoke" (click)="onRevoke(session.id)">
+              Revocar
+            </button>
+          }
+        </div>
+
+        <p class="ua">💻 {{ session.userAgent }}</p>
+        <p class="meta">🌐 IP: <strong>{{ session.ipAddress }}</strong></p>
+        <p class="meta">
+          🕒 Creada: {{ session.createdAt | date: 'short' }}
+        </p>
+        <p class="meta">
+          ⏳ Expira: {{ session.expiresAt | date: 'short' }}
+        </p>
+        <small class="session-id">ID: {{ session.id }}</small>
+      </article>
+    } @empty {
+      @if (!store.isLoading()) {
+        <app-empty-state
+          icon="🔐"
+          message="No se encontraron sesiones registradas."
+        />
+      }
+    }
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="auth-container">
+  <app-page-header
+    title="📝 Crear Cuenta"
+    subtitle="Regístrate en Football Manager"
+  />
+
+  @if (store.error(); as error) {
+    <app-error-message [message]="error" />
+  }
+
+  <form [formRoot]="registerForm" class="auth-form">
+    <label>
+      Nombre completo
+      <input
+        type="text"
+        [formField]="registerForm.fullName"
+        placeholder="Ej: Chief Scout"
+        autocomplete="name"
+      />
+      @if (registerForm.fullName().invalid() && registerForm.fullName().touched()) {
+        <span class="error-hint">El nombre es obligatorio (1–120 caracteres)</span>
+      }
+    </label>
+
+    <label>
+      Correo electrónico
+      <input
+        type="email"
+        [formField]="registerForm.email"
+        placeholder="Ej: scout@football.com"
+        autocomplete="email"
+      />
+      @if (registerForm.email().invalid() && registerForm.email().touched()) {
+        <span class="error-hint">Ingresa un correo electrónico válido</span>
+      }
+    </label>
+
+    <label>
+      Contraseña
+      <input
+        type="password"
+        [formField]="registerForm.password"
+        placeholder="Mínimo 8 caracteres"
+        autocomplete="new-password"
+      />
+      @if (registerForm.password().invalid() && registerForm.password().touched()) {
+        <span class="error-hint">Debe tener entre 8 y 128 caracteres</span>
+      }
+    </label>
+
+    <label>
+      Rol
+      <select [formField]="registerForm.role">
+        @for (role of roles; track role) {
+          <option [value]="role">{{ role }}</option>
+        }
+      </select>
+    </label>
+
+    <button
+      type="submit"
+      [disabled]="registerForm().submitting() || registerForm().invalid()"
+    >
+      @if (registerForm().submitting()) {
+        Registrando...
+      } @else {
+        Crear cuenta
+      }
+    </button>
+  </form>
+
+  <p class="auth-footer">
+    ¿Ya tienes cuenta?
+    <a routerLink="/auth/login">Inicia sesión aquí</a>
+  </p>
+</div>

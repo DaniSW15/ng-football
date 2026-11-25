@@ -1,0 +1,34 @@
+<div class="container">
+  <app-page-header
+    title="🏆 Competiciones"
+    subtitle="Gestión de ligas, copas y torneos"
+  >
+    <span class="badge">{{ store.competitionCount() }} competiciones</span>
+  </app-page-header>
+
+  <app-competition-form (competitionCreated)="onCompetitionCreated($event)" />
+
+  @if (store.error(); as error) {
+    <app-error-message [message]="error" />
+  }
+
+  @if (store.isLoading()) {
+    <p>Cargando competiciones...</p>
+  }
+
+  <div class="competitions-grid">
+    @for (competition of store.competitions(); track competition.id) {
+      <app-competition-card
+        [competition]="competition"
+        (delete)="onDeleteCompetition($event)"
+      />
+    } @empty {
+      @if (!store.isLoading()) {
+        <app-empty-state
+          icon="🏆"
+          message="No hay competiciones registradas aún. ¡Crea la primera!"
+        />
+      }
+    }
+  </div>
+</div>

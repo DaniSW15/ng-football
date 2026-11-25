@@ -6,5 +6,17 @@ export const routes: Routes = [
     loadChildren: () =>
       import('@features/teams/teams.routes').then((m) => m.TEAMS_ROUTES),
   },
+  {
+    path: 'competitions',
+    loadChildren: () =>
+      import('@features/competitions/competitions.routes').then(
+        (m) => m.COMPETITIONS_ROUTES
+      ),
+  },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('@features/auth/auth.routes').then((m) => m.AUTH_ROUTES),
+  },
   { path: '', redirectTo: 'teams', pathMatch: 'full' },
 ];

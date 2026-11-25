@@ -1,0 +1,58 @@
+<div class="auth-container">
+  <app-page-header
+    title="🔐 Iniciar Sesión"
+    subtitle="Accede con tu cuenta de Football Manager"
+  />
+
+  @if (store.successMessage(); as success) {
+    <div class="success-box" role="status">✅ {{ success }}</div>
+  }
+
+  @if (store.error(); as error) {
+    <app-error-message [message]="error" />
+  }
+
+  <form [formRoot]="loginForm" class="auth-form">
+    <label>
+      Correo electrónico
+      <input
+        type="email"
+        [formField]="loginForm.email"
+        placeholder="Ej: scout@football.com"
+        autocomplete="email"
+      />
+      @if (loginForm.email().invalid() && loginForm.email().touched()) {
+        <span class="error-hint">Ingresa un correo electrónico válido</span>
+      }
+    </label>
+
+    <label>
+      Contraseña
+      <input
+        type="password"
+        [formField]="loginForm.password"
+        placeholder="••••••••"
+        autocomplete="current-password"
+      />
+      @if (loginForm.password().invalid() && loginForm.password().touched()) {
+        <span class="error-hint">La contraseña es obligatoria</span>
+      }
+    </label>
+
+    <button
+      type="submit"
+      [disabled]="loginForm().submitting() || loginForm().invalid()"
+    >
+      @if (loginForm().submitting()) {
+        Ingresando...
+      } @else {
+        Iniciar sesión
+      }
+    </button>
+  </form>
+
+  <p class="auth-footer">
+    ¿No tienes cuenta?
+    <a routerLink="/auth/register">Regístrate aquí</a>
+  </p>
+</div>

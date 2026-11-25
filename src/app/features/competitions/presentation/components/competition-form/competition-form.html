@@ -1,0 +1,51 @@
+<h2>Agregar Competición</h2>
+
+<form [formRoot]="competitionForm">
+  <label>
+    Nombre de la competición
+    <input [formField]="competitionForm.name" placeholder="Ej: LaLiga EA Sports" />
+    @if (competitionForm.name().invalid() && competitionForm.name().touched()) {
+      <span class="error-hint">El nombre es requerido (1–100 caracteres)</span>
+    }
+  </label>
+
+  <label>
+    Tipo de competición
+    <select [formField]="competitionForm.competitionType">
+      <option value="league">🏆 Liga (league)</option>
+      <option value="cup">🥇 Copa (cup)</option>
+      <option value="super_cup">⭐ Supercopa (super_cup)</option>
+      <option value="tournament">🌍 Torneo (tournament)</option>
+    </select>
+  </label>
+
+  <label>
+    Ámbito / Scope
+    <select [formField]="competitionForm.scope">
+      <option value="domestic">Nacional (domestic)</option>
+      <option value="international">Internacional (international)</option>
+    </select>
+  </label>
+
+  <label>
+    Código de país (ISO Alpha-2)
+    <input
+      [formField]="competitionForm.countryCode"
+      placeholder="Ej: ES (solo para ámbito nacional)"
+    />
+    @if (competitionForm.countryCode().invalid() && competitionForm.countryCode().touched()) {
+      <span class="error-hint">Código de país de 2 caracteres requerido (ej. ES, MX, AR)</span>
+    }
+  </label>
+
+  <button
+    type="submit"
+    [disabled]="competitionForm().submitting() || competitionForm().invalid()"
+  >
+    @if (competitionForm().submitting()) {
+      Creando...
+    } @else {
+      Crear competición
+    }
+  </button>
+</form>
