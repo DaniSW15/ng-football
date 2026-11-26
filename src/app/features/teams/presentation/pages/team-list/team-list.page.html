@@ -1,22 +1,40 @@
 <div class="container">
-  <app-page-header title="⚽ Equipos de Fútbol" subtitle="Gestiona tus equipos favoritos">
+  <app-page-header
+    title="⚽ Equipos de Fútbol"
+    subtitle="Gestiona los equipos registrados"
+  >
     <span class="badge">{{ store.teamCount() }} equipos</span>
   </app-page-header>
 
-  <app-team-form (teamCreated)="onTeamCreated($event)" />
+  <app-team-form [submitTeam]="createTeamHandler" />
+
+  @if (store.successMessage(); as success) {
+    <div class="success-box" role="status">✅ {{ success }}</div>
+  }
 
   @if (store.error(); as error) {
     <app-error-message [message]="error" />
   }
 
+  @if (store.isLoading()) {
+    <p>Cargando equipos...</p>
+  }
+
   <div class="team-grid">
     @for (team of store.teams(); track team.id) {
-      <app-team-card [team]="team" />
-    } @empty {
-      <app-empty-state
-        icon="⚽"
-        message="No hay equipos registrados aún. ¡Crea el primero!"
+      <app-team-card
+        [team]="team"
+        [deleting]="store.deletingTeamId() === team.id"
+        [submitRename]="renameTeamHandler"
+        (delete)="onDeleteTeam($event)"
       />
+    } @empty {
+      @if (!store.isLoading()) {
+        <app-empty-state
+          icon="⚽"
+          message="No hay equipos registrados aún. ¡Crea el primero!"
+        />
+      }
     }
   </div>
 </div>

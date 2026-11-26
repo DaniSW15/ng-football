@@ -2,13 +2,15 @@
 export interface Team {
   readonly id: string;
   readonly name: string;
-  readonly country: string;
-  readonly foundedYear: number;
+  readonly createdAt: string;
 }
 
-/** Value Object para creación */
+/** Value Object para creación (POST /api/v1/teams) */
 export interface CreateTeamPayload {
   readonly name: string;
-  readonly country: string;
-  readonly foundedYear: number;
+}
+
+/** Value Object para renombrar (PATCH /api/v1/teams/{team_id}) */
+export interface RenameTeamPayload {
+  readonly name: string;
 }

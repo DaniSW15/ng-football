@@ -16,5 +16,11 @@
 
   <footer class="card-footer">
     <small>ID: {{ competition().id.slice(0, 8) }}...</small>
+    <a
+      [routerLink]="['/competitions', competition().id, 'seasons']"
+      class="seasons-link"
+    >
+      📅 Temporadas
+    </a>
   </footer>
 </article>

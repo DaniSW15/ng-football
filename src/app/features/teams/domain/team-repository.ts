@@ -1,13 +1,17 @@
 import { Observable } from 'rxjs';
-import { Team, CreateTeamPayload } from './team.model';
+import {
+  CreateTeamPayload,
+  RenameTeamPayload,
+  Team,
+} from './team.model';
 
 /**
- * Puerto (interfaz abstracta) — define QUÉ necesita el dominio,
- * no CÓMO se obtiene. La infraestructura lo implementa.
+ * Puerto (interfaz abstracta) — define el contrato de datos para equipos.
  */
 export abstract class TeamRepository {
   abstract getAll(): Observable<Team[]>;
   abstract getById(id: string): Observable<Team>;
   abstract create(payload: CreateTeamPayload): Observable<Team>;
+  abstract rename(id: string, payload: RenameTeamPayload): Observable<Team>;
   abstract delete(id: string): Observable<void>;
 }

@@ -1,25 +1,36 @@
-import { Team, CreateTeamPayload } from '../domain/team.model';
-import { TeamApiDto, CreateTeamApiDto } from './dtos/team-api.dto';
+import {
+  CreateTeamPayload,
+  RenameTeamPayload,
+  Team,
+} from '../domain/team.model';
+import {
+  CreateTeamRequestDto,
+  RenameTeamRequestDto,
+  TeamResponseDto,
+} from './dtos/team-api.dto';
 
 /**
- * Mapper: traduce entre el contrato del API (DTO) y el modelo de dominio.
- * Esto AÍSLA al dominio de cambios en el backend.
+ * Mapper: traduce entre el contrato del API (DTO snake_case)
+ * y el modelo de dominio (camelCase).
  */
 export class TeamApiMapper {
-  static toDomain(dto: TeamApiDto): Team {
+  static toDomain(dto: TeamResponseDto): Team {
     return {
       id: dto.id,
       name: dto.name,
-      country: dto.country,
-      foundedYear: dto.founded_year,
+      createdAt: dto.created_at,
     };
   }
 
-  static toCreateDto(payload: CreateTeamPayload): CreateTeamApiDto {
+  static toCreateDto(payload: CreateTeamPayload): CreateTeamRequestDto {
     return {
-      name: payload.name,
-      country: payload.country,
-      founded_year: payload.foundedYear,
+      name: payload.name.trim(),
+    };
+  }
+
+  static toRenameDto(payload: RenameTeamPayload): RenameTeamRequestDto {
+    return {
+      name: payload.name.trim(),
     };
   }
 }

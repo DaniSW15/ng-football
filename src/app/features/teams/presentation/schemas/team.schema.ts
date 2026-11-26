@@ -1,27 +1,39 @@
 import {
-  schema,
-  required,
+  maxLength,
   minLength,
-  min,
-  max,
+  required,
+  schema,
+  SchemaPath,
+  validate,
 } from '@angular/forms/signals';
-import { CreateTeamPayload } from '../../domain/team.model';
+import { CreateTeamPayload, RenameTeamPayload } from '../../domain/team.model';
+
+function applyTeamNameRules(namePath: SchemaPath<string>): void {
+  required(namePath, { message: 'El nombre del equipo es obligatorio' });
+  minLength(namePath, 1, { message: 'Mínimo 1 caracter' });
+  maxLength(namePath, 100, { message: 'Máximo 100 caracteres' });
+  validate(namePath, ({ value }) => {
+    const raw = value();
+    if (raw.length > 0 && raw.trim().length === 0) {
+      return {
+        kind: 'blank',
+        message: 'El nombre no puede contener solo espacios',
+      };
+    }
+    return undefined;
+  });
+}
 
 /**
- * Esquema reusable y componible de validación para Team.
- *
- * Sigue la arquitectura de dos capas de Signal Forms:
- * - Capa Estructural: se ejecuta una sola vez al instanciar el formulario.
- * - Capa de Comportamiento: reglas reactivas reevaluadas en runtime mediante signals.
+ * Esquema Signal Forms para creación de equipos (POST /api/v1/teams).
  */
 export const teamSchema = schema<CreateTeamPayload>((team) => {
-  required(team.name, { message: 'El nombre es requerido' });
-  minLength(team.name, 2, { message: 'Mínimo 2 caracteres' });
+  applyTeamNameRules(team.name);
+});
 
-  required(team.country, { message: 'El país es requerido' });
-  minLength(team.country, 2, { message: 'Mínimo 2 caracteres' });
-
-  required(team.foundedYear, { message: 'El año de fundación es requerido' });
-  min(team.foundedYear, 1850, { message: 'El año debe ser posterior a 1850' });
-  max(team.foundedYear, 2030, { message: 'El año no puede exceder 2030' });
+/**
+ * Esquema Signal Forms para renombrar un equipo (PATCH /api/v1/teams/{team_id}).
+ */
+export const renameTeamSchema = schema<RenameTeamPayload>((team) => {
+  applyTeamNameRules(team.name);
 });

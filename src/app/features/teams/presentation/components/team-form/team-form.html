@@ -1,39 +1,44 @@
-<h2>Agregar Equipo</h2>
+<section class="form-card" aria-labelledby="create-team-heading">
+  <h2 id="create-team-heading">Agregar Equipo</h2>
 
-<form [formRoot]="teamForm">
-  <label>
-    Nombre
-    <input [formField]="teamForm.name" placeholder="Ej: Real Madrid" />
-    @if (teamForm.name().invalid() && teamForm.name().touched()) {
-      <span class="error-hint">El nombre es requerido (mínimo 2 caracteres)</span>
-    }
-  </label>
+  <form
+    #formEl
+    [formRoot]="teamForm"
+    aria-labelledby="create-team-heading"
+    novalidate
+  >
+    <div class="field">
+      <label for="team-name">
+        Nombre del equipo <span aria-hidden="true">*</span>
+      </label>
+      <span id="team-name-hint" class="hint">
+        Entre 1 y 100 caracteres (ej. Real Madrid CF)
+      </span>
+      @let nameInvalid = teamForm.name().invalid() && teamForm.name().touched();
+      <input
+        id="team-name"
+        type="text"
+        [formField]="teamForm.name"
+        placeholder="Ej: Real Madrid CF"
+        [attr.aria-invalid]="nameInvalid ? 'true' : 'false'"
+        [attr.aria-describedby]="
+          nameInvalid ? 'team-name-hint team-name-error' : 'team-name-hint'
+        "
+      />
+      @if (nameInvalid) {
+        <span id="team-name-error" class="error-hint">
+          <span role="img" aria-label="Error">❌</span>
+          {{ teamForm.name().errors()[0]?.message ?? 'El nombre es obligatorio (1–100 caracteres).' }}
+        </span>
+      }
+    </div>
 
-  <label>
-    País
-    <input [formField]="teamForm.country" placeholder="Ej: Spain" />
-    @if (teamForm.country().invalid() && teamForm.country().touched()) {
-      <span class="error-hint">El país es requerido (mínimo 2 caracteres)</span>
-    }
-  </label>
-
-  <label>
-    Año de fundación
-    <input
-      type="number"
-      [formField]="teamForm.foundedYear"
-      placeholder="Ej: 1902"
-    />
-    @if (teamForm.foundedYear().invalid() && teamForm.foundedYear().touched()) {
-      <span class="error-hint">Año válido entre 1850 y 2030</span>
-    }
-  </label>
-
-  <button type="submit" [disabled]="teamForm().submitting() || teamForm().invalid()">
-    @if (teamForm().submitting()) {
-      Creando...
-    } @else {
-      Crear equipo
-    }
-  </button>
-</form>
+    <button type="submit" [disabled]="teamForm().submitting()">
+      @if (teamForm().submitting()) {
+        Creando...
+      } @else {
+        Crear equipo
+      }
+    </button>
+  </form>
+</section>

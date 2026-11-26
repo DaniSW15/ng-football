@@ -1,0 +1,125 @@
+<div class="container">
+  <nav class="breadcrumb" aria-label="Navegación">
+    <a [routerLink]="backRoute()" class="back-link">← Volver a temporadas</a>
+  </nav>
+
+  @if (store.isDetailLoading()) {
+    <p>Cargando temporada...</p>
+  }
+
+  @if (store.successMessage(); as success) {
+    <div class="success-box" role="status">✅ {{ success }}</div>
+  }
+
+  @if (store.error(); as error) {
+    <app-error-message [message]="error" />
+  }
+
+  @if (store.selectedSeason(); as season) {
+    <app-page-header
+      [title]="'📅 Temporada ' + season.name"
+      [subtitle]="
+        (competitionName() ? competitionName() + ' · ' : '') +
+        formatDate(season.startDate) +
+        ' — ' +
+        formatDate(season.endDate)
+      "
+    >
+      <div class="header-meta">
+        <span class="status-badge" [class]="season.status">
+          {{ getStatusLabel() }}
+        </span>
+        <span class="badge">{{ store.enrollmentCount() }} equipos inscritos</span>
+      </div>
+    </app-page-header>
+
+    <section class="season-summary">
+      <div class="summary-details">
+        <p>
+          <strong>Periodo:</strong>
+          {{ formatDate(season.startDate) }} — {{ formatDate(season.endDate) }}
+        </p>
+        <p>
+          <strong>Creada:</strong> {{ season.createdAt | date: 'short' }}
+        </p>
+        <p class="id-meta"><strong>ID:</strong> {{ season.id }}</p>
+      </div>
+
+      @if (season.status === 'draft') {
+        <div class="summary-actions">
+          @if (confirmingActivate()) {
+            <div class="confirm-group" role="group" aria-label="Confirmar activación">
+              <button
+                type="button"
+                class="btn-confirm"
+                [disabled]="store.activatingSeasonId() === season.id"
+                (click)="confirmActivate(season.id)"
+              >
+                {{
+                  store.activatingSeasonId() === season.id
+                    ? 'Activando...'
+                    : 'Confirmar activación'
+                }}
+              </button>
+              <button
+                type="button"
+                class="btn-cancel"
+                [disabled]="store.activatingSeasonId() === season.id"
+                (click)="cancelConfirm()"
+              >
+                Cancelar
+              </button>
+            </div>
+          } @else {
+            <button
+              type="button"
+              class="btn-activate"
+              [disabled]="store.activatingSeasonId() === season.id"
+              (click)="startConfirm()"
+            >
+              {{
+                store.activatingSeasonId() === season.id
+                  ? 'Activando...'
+                  : 'Activar temporada'
+              }}
+            </button>
+          }
+        </div>
+      }
+    </section>
+
+    <app-enrollment-form
+      [teams]="store.teams()"
+      [enrolledTeamIds]="store.enrolledTeamIds()"
+      [submitEnrollment]="enrollTeamHandler"
+    />
+
+    <section aria-labelledby="enrollments-heading">
+      <h2 id="enrollments-heading">Equipos Inscritos</h2>
+
+      <div class="enrollments-grid">
+        @for (enrollment of store.enrollments(); track enrollment.id) {
+          <article class="enrollment-card">
+            <div class="enrollment-header">
+              <h3>{{ getTeamDisplay(enrollment.teamId) }}</h3>
+              @if (enrollment.groupName; as group) {
+                <span class="group-badge">{{ group }}</span>
+              }
+            </div>
+            <p class="meta">
+              Inscrito: {{ enrollment.createdAt | date: 'short' }}
+            </p>
+            <footer class="card-footer">
+              <small>ID inscripción: {{ enrollment.id.slice(0, 8) }}...</small>
+            </footer>
+          </article>
+        } @empty {
+          <app-empty-state
+            icon="👥"
+            message="No hay equipos inscritos en esta temporada aún."
+          />
+        }
+      </div>
+    </section>
+  }
+</div>

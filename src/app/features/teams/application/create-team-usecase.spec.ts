@@ -15,6 +15,7 @@ describe('CreateTeamUsecase', () => {
             getAll: () => {},
             getById: () => {},
             create: () => {},
+            rename: () => {},
             delete: () => {},
           },
         },

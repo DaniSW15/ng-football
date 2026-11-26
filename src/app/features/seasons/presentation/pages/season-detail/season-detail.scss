@@ -1,0 +1,195 @@
+.container {
+  padding: 1rem 2rem;
+}
+
+.breadcrumb {
+  margin-block-end: 0.75rem;
+}
+
+.back-link {
+  color: #1565c0;
+  text-decoration: none;
+  font-weight: 600;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 3px solid #0b57d0;
+    outline-offset: 2px;
+  }
+}
+
+.header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.badge {
+  display: inline-block;
+  background: #e3f2fd;
+  color: #1565c0;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  &.draft {
+    background: #fff8e1;
+    color: #8d6e00;
+  }
+
+  &.active {
+    background: #e8f5e9;
+    color: #1b5e20;
+  }
+
+  &.completed {
+    background: #e3f2fd;
+    color: #0d47a1;
+  }
+
+  &.archived {
+    background: #eceff1;
+    color: #455a64;
+  }
+}
+
+.success-box {
+  padding: 0.75rem 1rem;
+  background: #e8f5e9;
+  border: 1px solid #a5d6a7;
+  border-radius: 6px;
+  color: #1b5e20;
+  margin-block-end: 1rem;
+  font-weight: 500;
+}
+
+.season-summary {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-block-end: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  p {
+    margin: 0.25rem 0;
+    color: #37474f;
+  }
+
+  .id-meta {
+    font-size: 0.85rem;
+    color: #607d8b;
+  }
+}
+
+.confirm-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.btn-activate,
+.btn-confirm,
+.btn-cancel {
+  font: inherit;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 3px solid #0b57d0;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.btn-activate {
+  background: #2e7d32;
+  color: #ffffff;
+}
+
+.btn-confirm {
+  background: #1565c0;
+  color: #ffffff;
+}
+
+.btn-cancel {
+  background: #e0e0e0;
+  color: #1a1a2e;
+}
+
+.enrollments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.enrollment-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .enrollment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      color: #1a1a2e;
+    }
+  }
+
+  .group-badge {
+    background: #ede7f6;
+    color: #4527a0;
+    padding: 0.15rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .meta {
+    margin: 0;
+    color: #546e7a;
+    font-size: 0.85rem;
+  }
+
+  .card-footer {
+    margin-top: auto;
+    padding-top: 0.5rem;
+    border-top: 1px solid #f0f0f0;
+    color: #78909c;
+    font-size: 0.75rem;
+  }
+}

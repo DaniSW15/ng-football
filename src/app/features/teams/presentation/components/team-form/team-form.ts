@@ -1,4 +1,11 @@
-import { Component, output, signal } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  input,
+  output,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { form, FormField, FormRoot } from '@angular/forms/signals';
 import { CreateTeamPayload } from '../../../domain/team.model';
 import { teamSchema } from '../../schemas/team.schema';
@@ -10,64 +17,128 @@ import { teamSchema } from '../../schemas/team.schema';
   templateUrl: './team-form.html',
   styles: [
     `
+      .form-card {
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 1.25rem;
+        margin-block-end: 1.5rem;
+        max-width: 440px;
+      }
+      h2 {
+        margin: 0 0 1rem;
+        font-size: 1.2rem;
+        color: #1a1a2e;
+      }
       form {
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
-        max-width: 400px;
-        margin-bottom: 1.5rem;
+        gap: 1rem;
       }
-      label {
+      .field {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
-        font-weight: 500;
       }
-      input {
-        padding: 0.5rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 1rem;
+      label {
+        font-weight: 600;
+        color: #1a1a2e;
       }
-      .error-hint {
-        color: #d32f2f;
+      .hint {
+        color: #5f6368;
         font-size: 0.85rem;
       }
-      button {
-        padding: 0.6rem 1.2rem;
+      input {
+        font: inherit;
+        font-size: max(1rem, 1em);
+        min-height: 48px;
+        padding: 0.6rem 0.75rem;
+        border: 1px solid #767676;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background: #ffffff;
+      }
+      input:focus-visible {
+        outline: 3px solid #0b57d0;
+        outline-offset: 2px;
+      }
+      input:is(:user-invalid, [aria-invalid='true']) {
+        border-color: #d93025;
+        background-color: #fce8e6;
+      }
+      .error-hint {
+        color: #b3261e;
+        font-size: 0.875rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+      }
+      button[type='submit'] {
+        font: inherit;
+        font-size: max(1rem, 1em);
+        min-height: 48px;
+        padding: 0.6rem 1.25rem;
         background: #1976d2;
-        color: white;
+        color: #ffffff;
         border: none;
         border-radius: 4px;
-        font-size: 1rem;
+        font-weight: 600;
         cursor: pointer;
         align-self: flex-start;
       }
-      button:disabled {
-        background: #999;
+      button[type='submit']:focus-visible {
+        outline: 3px solid #0b57d0;
+        outline-offset: 2px;
+      }
+      button[type='submit']:disabled {
+        background: #78909c;
         cursor: not-allowed;
       }
     `,
   ],
 })
 export class TeamForm {
+  readonly submitTeam =
+    input<
+      ((payload: CreateTeamPayload) => Promise<{ kind: string; message: string } | void>) | null
+    >(null);
   readonly teamCreated = output<CreateTeamPayload>();
+
+  private readonly formElement =
+    viewChild<ElementRef<HTMLFormElement>>('formEl');
 
   readonly teamModel = signal<CreateTeamPayload>({
     name: '',
-    country: '',
-    foundedYear: 1900,
   });
 
-  // El formulario consume el esquema componible desacoplado
   readonly teamForm = form(this.teamModel, teamSchema, {
     submission: {
       action: async (field) => {
-        this.teamCreated.emit(field().value());
-        this.teamModel.set({
-          name: '',
-          country: '',
-          foundedYear: 1900,
+        const payload: CreateTeamPayload = {
+          name: field().value().name.trim(),
+        };
+
+        const handler = this.submitTeam();
+        if (handler) {
+          const error = await handler(payload);
+          if (!error) {
+            this.teamModel.set({ name: '' });
+            field().reset();
+          }
+          return error;
+        }
+
+        this.teamCreated.emit(payload);
+        this.teamModel.set({ name: '' });
+        field().reset();
+        return undefined;
+      },
+      onInvalid: () => {
+        queueMicrotask(() => {
+          const firstInvalid = this.formElement()?.nativeElement.querySelector<
+            HTMLElement
+          >('[aria-invalid="true"]');
+          firstInvalid?.focus();
         });
       },
     },

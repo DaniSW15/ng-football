@@ -1,0 +1,68 @@
+<div class="container">
+  <app-page-header
+    title="📅 Temporadas"
+    subtitle="Gestión de ediciones temporales y activación por competición"
+  >
+    <span class="badge">{{ store.seasonCount() }} temporadas</span>
+  </app-page-header>
+
+  <search class="competition-filter">
+    <label for="competition-select">Competición</label>
+    <select
+      id="competition-select"
+      name="competition_id"
+      [value]="store.selectedCompetitionId() ?? ''"
+      (change)="onCompetitionChange($event)"
+    >
+      @if (store.competitions().length === 0) {
+        <option value="">No hay competiciones disponibles</option>
+      } @else {
+        <option value="">— Selecciona una competición —</option>
+        @for (competition of store.competitions(); track competition.id) {
+          <option [value]="competition.id">{{ competition.name }}</option>
+        }
+      }
+    </select>
+  </search>
+
+  @if (store.successMessage(); as success) {
+    <div class="success-box" role="status">✅ {{ success }}</div>
+  }
+
+  @if (store.error(); as error) {
+    <app-error-message [message]="error" />
+  }
+
+  @if (store.selectedCompetitionId()) {
+    <app-season-form
+      [competitionName]="store.selectedCompetition()?.name ?? null"
+      [submitSeason]="createSeasonHandler"
+    />
+
+    @if (store.isLoading()) {
+      <p>Cargando temporadas...</p>
+    }
+
+    <div class="seasons-grid">
+      @for (season of store.seasons(); track season.id) {
+        <app-season-card
+          [season]="season"
+          [activating]="store.activatingSeasonId() === season.id"
+          (activate)="onActivateSeason($event)"
+        />
+      } @empty {
+        @if (!store.isLoading()) {
+          <app-empty-state
+            icon="📅"
+            message="No hay temporadas registradas para esta competición aún."
+          />
+        }
+      }
+    </div>
+  } @else {
+    <app-empty-state
+      icon="🏆"
+      message="Crea o selecciona una competición para gestionar sus temporadas."
+    />
+  }
+</div>

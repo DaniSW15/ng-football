@@ -1,9 +1,11 @@
 import { Component, input, output } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Competition, CompetitionType, CompetitionScope } from '../../../domain/competition-model';
 
 @Component({
   selector: 'app-competition-card',
   standalone: true,
+  imports: [RouterLink],
   templateUrl: './competition-card.html',
   styleUrl: './competition-card.scss',
 })

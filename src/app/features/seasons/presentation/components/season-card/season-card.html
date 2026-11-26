@@ -1,0 +1,54 @@
+<article class="season-card">
+  <div class="card-header">
+    <h3>{{ season().name }}</h3>
+    <span class="status-badge" [class]="season().status">
+      {{ getStatusLabel() }}
+    </span>
+  </div>
+
+  <p class="dates">
+    📅 {{ formatDate(season().startDate) }} — {{ formatDate(season().endDate) }}
+  </p>
+
+  <div class="card-actions">
+    <a [routerLink]="['/seasons', season().id]" class="btn-detail">
+      Inscripciones y detalle
+    </a>
+
+    @if (season().status === 'draft') {
+      @if (confirmingActivate()) {
+        <div class="confirm-group" role="group" aria-label="Confirmar activación">
+          <button
+            type="button"
+            class="btn-confirm"
+            [disabled]="activating()"
+            (click)="confirmActivate()"
+          >
+            {{ activating() ? 'Activando...' : 'Confirmar activación' }}
+          </button>
+          <button
+            type="button"
+            class="btn-cancel"
+            [disabled]="activating()"
+            (click)="cancelConfirm()"
+          >
+            Cancelar
+          </button>
+        </div>
+      } @else {
+        <button
+          type="button"
+          class="btn-activate"
+          [disabled]="activating()"
+          (click)="startConfirm()"
+        >
+          {{ activating() ? 'Activando...' : 'Activar temporada' }}
+        </button>
+      }
+    }
+  </div>
+
+  <footer class="card-footer">
+    <small>ID: {{ season().id.slice(0, 8) }}...</small>
+  </footer>
+</article>

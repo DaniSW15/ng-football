@@ -1,0 +1,103 @@
+<section class="form-card" aria-labelledby="create-season-heading">
+  <h2 id="create-season-heading">
+    Nueva Temporada
+    @if (competitionName(); as compName) {
+      <span class="context-name">— {{ compName }}</span>
+    }
+  </h2>
+
+  <form
+    #formEl
+    [formRoot]="seasonForm"
+    aria-labelledby="create-season-heading"
+    novalidate
+  >
+    <div class="field">
+      <label for="season-name">
+        Nombre de la temporada <span aria-hidden="true">*</span>
+      </label>
+      <span id="season-name-hint" class="hint">
+        Entre 1 y 50 caracteres (ej. 2025/2026)
+      </span>
+      @let nameInvalid = seasonForm.name().invalid() && seasonForm.name().touched();
+      <input
+        id="season-name"
+        type="text"
+        [formField]="seasonForm.name"
+        placeholder="Ej: 2025/2026"
+        [attr.aria-invalid]="nameInvalid ? 'true' : 'false'"
+        [attr.aria-describedby]="
+          nameInvalid ? 'season-name-hint season-name-error' : 'season-name-hint'
+        "
+      />
+      @if (nameInvalid) {
+        <span id="season-name-error" class="error-hint">
+          <span role="img" aria-label="Error">❌</span>
+          {{ seasonForm.name().errors()[0]?.message ?? 'Nombre inválido (1–50 caracteres).' }}
+        </span>
+      }
+    </div>
+
+    <div class="date-row">
+      <div class="field">
+        <label for="season-start-date">
+          Fecha de inicio <span aria-hidden="true">*</span>
+        </label>
+        <span id="season-start-hint" class="hint">Formato YYYY-MM-DD</span>
+        @let startInvalid =
+          seasonForm.startDate().invalid() && seasonForm.startDate().touched();
+        <input
+          id="season-start-date"
+          type="date"
+          [formField]="seasonForm.startDate"
+          [attr.aria-invalid]="startInvalid ? 'true' : 'false'"
+          [attr.aria-describedby]="
+            startInvalid
+              ? 'season-start-hint season-start-error'
+              : 'season-start-hint'
+          "
+        />
+        @if (startInvalid) {
+          <span id="season-start-error" class="error-hint">
+            <span role="img" aria-label="Error">❌</span>
+            {{ seasonForm.startDate().errors()[0]?.message ?? 'Fecha de inicio inválida.' }}
+          </span>
+        }
+      </div>
+
+      <div class="field">
+        <label for="season-end-date">
+          Fecha de fin <span aria-hidden="true">*</span>
+        </label>
+        <span id="season-end-hint" class="hint">
+          Debe ser posterior a la fecha de inicio
+        </span>
+        @let endInvalid =
+          seasonForm.endDate().invalid() && seasonForm.endDate().touched();
+        <input
+          id="season-end-date"
+          type="date"
+          [formField]="seasonForm.endDate"
+          [attr.aria-invalid]="endInvalid ? 'true' : 'false'"
+          [attr.aria-describedby]="
+            endInvalid ? 'season-end-hint season-end-error' : 'season-end-hint'
+          "
+        />
+        @if (endInvalid) {
+          <span id="season-end-error" class="error-hint">
+            <span role="img" aria-label="Error">❌</span>
+            {{ seasonForm.endDate().errors()[0]?.message ?? 'Fecha de fin inválida.' }}
+          </span>
+        }
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="seasonForm().submitting()">
+      @if (seasonForm().submitting()) {
+        Creando temporada...
+      } @else {
+        Crear temporada
+      }
+    </button>
+  </form>
+</section>

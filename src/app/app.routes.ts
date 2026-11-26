@@ -14,6 +14,11 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'seasons',
+    loadChildren: () =>
+      import('@features/seasons/seasons.routes').then((m) => m.SEASONS_ROUTES),
+  },
+  {
     path: 'auth',
     loadChildren: () =>
       import('@features/auth/auth.routes').then((m) => m.AUTH_ROUTES),

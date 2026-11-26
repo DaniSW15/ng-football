@@ -3,14 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 
 import { TeamRepository } from '../domain/team-repository';
-import { Team, CreateTeamPayload } from '../domain/team.model';
-import { TeamApiDto } from './dtos/team-api.dto';
+import {
+  CreateTeamPayload,
+  RenameTeamPayload,
+  Team,
+} from '../domain/team.model';
+import { TeamResponseDto } from './dtos/team-api.dto';
 import { TeamApiMapper } from './team-api-mapper';
 
 /**
- * Adaptador HTTP — implementa el puerto del dominio.
- * Usa rutas RELATIVAS ('/teams') porque el baseUrlInterceptor
- * antepone la URL base automáticamente.
+ * Adaptador HTTP para /api/v1/teams.
+ * Implementa el puerto TeamRepository.
  */
 @Service({ autoProvided: false })
 export class TeamHttpAdapter extends TeamRepository {
@@ -18,20 +21,27 @@ export class TeamHttpAdapter extends TeamRepository {
 
   override getAll(): Observable<Team[]> {
     return this.http
-      .get<TeamApiDto[]>('/teams/')
+      .get<TeamResponseDto[]>('/teams')
       .pipe(map((dtos) => dtos.map(TeamApiMapper.toDomain)));
   }
 
   override getById(id: string): Observable<Team> {
     return this.http
-      .get<TeamApiDto>(`/teams/${id}`)
+      .get<TeamResponseDto>(`/teams/${id}`)
       .pipe(map(TeamApiMapper.toDomain));
   }
 
   override create(payload: CreateTeamPayload): Observable<Team> {
     const dto = TeamApiMapper.toCreateDto(payload);
     return this.http
-      .post<TeamApiDto>('/teams/', dto)
+      .post<TeamResponseDto>('/teams', dto)
+      .pipe(map(TeamApiMapper.toDomain));
+  }
+
+  override rename(id: string, payload: RenameTeamPayload): Observable<Team> {
+    const dto = TeamApiMapper.toRenameDto(payload);
+    return this.http
+      .patch<TeamResponseDto>(`/teams/${id}`, dto)
       .pipe(map(TeamApiMapper.toDomain));
   }
 

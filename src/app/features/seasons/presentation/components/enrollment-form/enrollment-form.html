@@ -1,0 +1,80 @@
+<section class="form-card" aria-labelledby="enroll-team-heading">
+  <h2 id="enroll-team-heading">Inscribir Equipo</h2>
+
+  <form
+    #formEl
+    [formRoot]="enrollmentForm"
+    aria-labelledby="enroll-team-heading"
+    novalidate
+  >
+    <div class="field">
+      <label for="enroll-team-id">
+        Equipo <span aria-hidden="true">*</span>
+      </label>
+      <span id="enroll-team-hint" class="hint">
+        Selecciona un equipo registrado que aún no esté inscrito
+      </span>
+      @let teamInvalid =
+        enrollmentForm.teamId().invalid() && enrollmentForm.teamId().touched();
+      <select
+        id="enroll-team-id"
+        [formField]="enrollmentForm.teamId"
+        [attr.aria-invalid]="teamInvalid ? 'true' : 'false'"
+        [attr.aria-describedby]="
+          teamInvalid
+            ? 'enroll-team-hint enroll-team-error'
+            : 'enroll-team-hint'
+        "
+      >
+        <option value="">— Selecciona un equipo —</option>
+        @for (team of teams(); track team.id) {
+          <option [value]="team.id" [disabled]="isAlreadyEnrolled(team.id)">
+            {{ team.name }}@if (isAlreadyEnrolled(team.id)) { — Ya inscrito }
+          </option>
+        }
+      </select>
+      @if (teamInvalid) {
+        <span id="enroll-team-error" class="error-hint">
+          <span role="img" aria-label="Error">❌</span>
+          {{ enrollmentForm.teamId().errors()[0]?.message ?? 'Selecciona un equipo.' }}
+        </span>
+      }
+    </div>
+
+    <div class="field">
+      <label for="enroll-group-name">Grupo (opcional)</label>
+      <span id="enroll-group-hint" class="hint">
+        Máximo 20 caracteres (ej. Grupo A). Déjalo vacío si no aplica.
+      </span>
+      @let groupInvalid =
+        enrollmentForm.groupName().invalid() &&
+        enrollmentForm.groupName().touched();
+      <input
+        id="enroll-group-name"
+        type="text"
+        [formField]="enrollmentForm.groupName"
+        placeholder="Ej: Grupo A"
+        [attr.aria-invalid]="groupInvalid ? 'true' : 'false'"
+        [attr.aria-describedby]="
+          groupInvalid
+            ? 'enroll-group-hint enroll-group-error'
+            : 'enroll-group-hint'
+        "
+      />
+      @if (groupInvalid) {
+        <span id="enroll-group-error" class="error-hint">
+          <span role="img" aria-label="Error">❌</span>
+          {{ enrollmentForm.groupName().errors()[0]?.message ?? 'Máximo 20 caracteres.' }}
+        </span>
+      }
+    </div>
+
+    <button type="submit" [disabled]="enrollmentForm().submitting()">
+      @if (enrollmentForm().submitting()) {
+        Inscribiendo...
+      } @else {
+        Inscribir equipo
+      }
+    </button>
+  </form>
+</section>

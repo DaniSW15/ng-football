@@ -1,13 +1,18 @@
-/** Contrato exacto del backend — snake_case como viene del API */
-export interface TeamApiDto {
+/** Contrato exacto del backend FastAPI (/api/v1/teams) */
+export interface TeamResponseDto {
   id: string;
   name: string;
-  country: string;
-  founded_year: number;
+  created_at: string;
 }
 
-export interface CreateTeamApiDto {
+export interface CreateTeamRequestDto {
   name: string;
-  country: string;
-  founded_year: number;
 }
+
+export interface RenameTeamRequestDto {
+  name: string;
+}
+
+// Aliases para compatibilidad
+export type TeamApiDto = TeamResponseDto;
+export type CreateTeamApiDto = CreateTeamRequestDto;

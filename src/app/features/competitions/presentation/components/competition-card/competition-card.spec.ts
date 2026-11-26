@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { CompetitionCard } from './competition-card';
 import { Competition } from '../../../domain/competition-model';
 
@@ -18,6 +19,7 @@ describe('CompetitionCard', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CompetitionCard],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CompetitionCard);
