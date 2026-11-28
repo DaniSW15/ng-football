@@ -2,7 +2,7 @@ import {
   Competition,
   CreateCompetitionPayload,
   RenameCompetitionPayload,
-} from '../domain/competition-model';
+} from '@competitions/domain/competition-model';
 import {
   CompetitionResponseDto,
   CreateCompetitionRequestDto,

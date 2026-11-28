@@ -1,13 +1,13 @@
 import { Provider } from '@angular/core';
-import { AuthRepository } from './domain/auth-repository';
-import { AuthHttpAdapter } from './infrastructure/auth-http-adapter';
-import { RegisterUsecase } from './application/register-usecase';
-import { LoginUsecase } from './application/login-usecase';
-import { LogoutUsecase } from './application/logout-usecase';
-import { GetMeUsecase } from './application/get-me-usecase';
-import { GetSessionsUsecase } from './application/get-sessions-usecase';
-import { RevokeSessionUsecase } from './application/revoke-session-usecase';
-import { AuthStore } from './presentation/state/auth-store';
+import { AuthRepository } from '@auth/domain/auth-repository';
+import { AuthHttpAdapter } from '@auth/infrastructure/auth-http-adapter';
+import { RegisterUsecase } from '@auth/application/register-usecase';
+import { LoginUsecase } from '@auth/application/login-usecase';
+import { LogoutUsecase } from '@auth/application/logout-usecase';
+import { GetMeUsecase } from '@auth/application/get-me-usecase';
+import { GetSessionsUsecase } from '@auth/application/get-sessions-usecase';
+import { RevokeSessionUsecase } from '@auth/application/revoke-session-usecase';
+import { AuthStore } from '@auth/presentation/state/auth-store';
 
 /**
  * Providers de Identity & Auth.

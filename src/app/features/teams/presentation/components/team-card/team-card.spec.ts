@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TeamCard } from './team-card';
-import { Team } from '../../../domain/team.model';
+import { Team } from '@teams/domain/team.model';
 
 describe('TeamCard', () => {
   let component: TeamCard;

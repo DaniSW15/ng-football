@@ -3,8 +3,8 @@ import { form, FormField, FormRoot } from '@angular/forms/signals';
 import {
   CreateCompetitionPayload,
   CreateCompetitionFormModel,
-} from '../../../domain/competition-model';
-import { competitionSchema } from '../../schemas/competition.schema';
+} from '@competitions/domain/competition-model';
+import { competitionSchema } from '@competitions/presentation/schemas/competition.schema';
 
 @Component({
   selector: 'app-competition-form',

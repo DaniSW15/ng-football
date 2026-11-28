@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { CreateCompetitionUsecase } from './create-competition-usecase';
-import { CompetitionRepository } from '../domain/competition-repository';
+import { CompetitionRepository } from '@competitions/domain/competition-repository';
 
 describe('CreateCompetitionUsecase', () => {
   let service: CreateCompetitionUsecase;

@@ -9,11 +9,11 @@ import {
 import {
   CreateSeasonFormModel,
   EnrollTeamFormModel,
-} from '../../domain/season-model';
+} from '@seasons/domain/season-model';
 import {
   ISO_DATE_PATTERN,
   isValidCalendarDate,
-} from '../../domain/season-date.utils';
+} from '@seasons/domain/season-date.utils';
 
 /**
  * Esquema Signal Forms para crear una temporada (POST /competitions/{id}/seasons).

@@ -3,11 +3,11 @@ import { DatePipe } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { EmptyState, ErrorMessage, PageHeader } from '@shared';
-import { EnrollTeamPayload } from '../../../domain/season-model';
-import { formatCalendarDate } from '../../../domain/season-date.utils';
-import { getSeasonStatusLabel } from '../../../domain/season-status.utils';
-import { EnrollmentForm } from '../../components/enrollment-form/enrollment-form';
-import { SeasonsStore } from '../../state/seasons-store';
+import { EnrollTeamPayload } from '@seasons/domain/season-model';
+import { formatCalendarDate } from '@seasons/domain/season-date.utils';
+import { getSeasonStatusLabel } from '@seasons/domain/season-status.utils';
+import { EnrollmentForm } from '@seasons/presentation/components/enrollment-form/enrollment-form';
+import { SeasonsStore } from '@seasons/presentation/state/seasons-store';
 
 @Component({
   selector: 'app-season-detail',

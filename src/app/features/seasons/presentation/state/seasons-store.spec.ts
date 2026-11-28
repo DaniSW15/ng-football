@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';
-import { GetCompetitionsUsecase } from '@features/competitions/application/get-competitions-usecase';
-import { GetTeamsUsecase } from '@features/teams/application/get-teams-usecase';
+import { GetCompetitionsUsecase } from '@competitions/application/get-competitions-usecase';
+import { GetTeamsUsecase } from '@teams/application/get-teams-usecase';
 import { SeasonsStore } from './seasons-store';
-import { GetSeasonsByCompetitionUsecase } from '../../application/get-seasons-by-competition-usecase';
-import { GetSeasonUsecase } from '../../application/get-season-usecase';
-import { CreateSeasonUsecase } from '../../application/create-season-usecase';
-import { ActivateSeasonUsecase } from '../../application/activate-season-usecase';
-import { GetEnrollmentsUsecase } from '../../application/get-enrollments-usecase';
-import { EnrollTeamUsecase } from '../../application/enroll-team-usecase';
-import { Enrollment, Season } from '../../domain/season-model';
+import { GetSeasonsByCompetitionUsecase } from '@seasons/application/get-seasons-by-competition-usecase';
+import { GetSeasonUsecase } from '@seasons/application/get-season-usecase';
+import { CreateSeasonUsecase } from '@seasons/application/create-season-usecase';
+import { ActivateSeasonUsecase } from '@seasons/application/activate-season-usecase';
+import { GetEnrollmentsUsecase } from '@seasons/application/get-enrollments-usecase';
+import { EnrollTeamUsecase } from '@seasons/application/enroll-team-usecase';
+import { Enrollment, Season } from '@seasons/domain/season-model';
 
 describe('SeasonsStore', () => {
   let store: SeasonsStore;

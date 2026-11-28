@@ -1,11 +1,11 @@
 import { Component, ElementRef, input, signal, viewChild } from '@angular/core';
 import { form, FormField, FormRoot } from '@angular/forms/signals';
-import { Team } from '@features/teams/domain/team.model';
+import { Team } from '@teams/domain/team.model';
 import {
   EnrollTeamFormModel,
   EnrollTeamPayload,
-} from '../../../domain/season-model';
-import { enrollTeamSchema } from '../../schemas/season.schema';
+} from '@seasons/domain/season-model';
+import { enrollTeamSchema } from '@seasons/presentation/schemas/season.schema';
 
 @Component({
   selector: 'app-enrollment-form',

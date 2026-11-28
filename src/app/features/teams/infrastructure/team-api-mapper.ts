@@ -2,7 +2,7 @@ import {
   CreateTeamPayload,
   RenameTeamPayload,
   Team,
-} from '../domain/team.model';
+} from '@teams/domain/team.model';
 import {
   CreateTeamRequestDto,
   RenameTeamRequestDto,

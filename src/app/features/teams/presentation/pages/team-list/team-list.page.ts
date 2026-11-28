@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { TeamsStore } from '../../state/teams-store';
-import { TeamCard } from '../../components/team-card/team-card';
-import { TeamForm } from '../../components/team-form/team-form';
-import { CreateTeamPayload, RenameTeamPayload } from '../../../domain/team.model';
+import { TeamsStore } from '@teams/presentation/state/teams-store';
+import { TeamCard } from '@teams/presentation/components/team-card/team-card';
+import { TeamForm } from '@teams/presentation/components/team-form/team-form';
+import { CreateTeamPayload, RenameTeamPayload } from '@teams/domain/team.model';
 import { PageHeader, EmptyState, ErrorMessage } from '@shared';
 
 @Component({

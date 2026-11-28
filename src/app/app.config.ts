@@ -12,7 +12,7 @@ import {
   errorHandlerInterceptor,
   loadingInterceptor,
 } from '@core';
-import { AUTH_PROVIDERS } from '@features/auth/auth.providers';
+import { AUTH_PROVIDERS } from '@auth/auth.providers';
 
 export const appConfig: ApplicationConfig = {
   providers: [

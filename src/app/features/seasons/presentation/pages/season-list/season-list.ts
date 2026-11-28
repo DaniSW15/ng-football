@@ -2,10 +2,10 @@ import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { EmptyState, ErrorMessage, PageHeader } from '@shared';
-import { CreateSeasonPayload } from '../../../domain/season-model';
-import { SeasonCard } from '../../components/season-card/season-card';
-import { SeasonForm } from '../../components/season-form/season-form';
-import { SeasonsStore } from '../../state/seasons-store';
+import { CreateSeasonPayload } from '@seasons/domain/season-model';
+import { SeasonCard } from '@seasons/presentation/components/season-card/season-card';
+import { SeasonForm } from '@seasons/presentation/components/season-form/season-form';
+import { SeasonsStore } from '@seasons/presentation/state/seasons-store';
 
 @Component({
   selector: 'app-season-list',

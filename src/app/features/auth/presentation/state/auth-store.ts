@@ -6,13 +6,13 @@ import {
   AuthSession,
   LoginPayload,
   RegisterPayload,
-} from '../../domain/auth.model';
-import { GetMeUsecase } from '../../application/get-me-usecase';
-import { GetSessionsUsecase } from '../../application/get-sessions-usecase';
-import { LoginUsecase } from '../../application/login-usecase';
-import { LogoutUsecase } from '../../application/logout-usecase';
-import { RegisterUsecase } from '../../application/register-usecase';
-import { RevokeSessionUsecase } from '../../application/revoke-session-usecase';
+} from '@auth/domain/auth.model';
+import { GetMeUsecase } from '@auth/application/get-me-usecase';
+import { GetSessionsUsecase } from '@auth/application/get-sessions-usecase';
+import { LoginUsecase } from '@auth/application/login-usecase';
+import { LogoutUsecase } from '@auth/application/logout-usecase';
+import { RegisterUsecase } from '@auth/application/register-usecase';
+import { RevokeSessionUsecase } from '@auth/application/revoke-session-usecase';
 
 export type AuthLoadingState = 'idle' | 'loading' | 'loaded' | 'error';
 

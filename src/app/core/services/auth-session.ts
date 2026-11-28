@@ -4,7 +4,7 @@ import type {
   AuthSessionResult,
   User,
   UserRole,
-} from '@features/auth/domain/auth.model';
+} from '@auth/domain/auth.model';
 
 const ACCESS_TOKEN_KEY = 'ng_football_access_token';
 const REFRESH_TOKEN_KEY = 'ng_football_refresh_token';

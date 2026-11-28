@@ -9,7 +9,7 @@ import {
   tap,
   throwError,
 } from 'rxjs';
-import { AuthRepository } from '@features/auth/domain/auth-repository';
+import { AuthRepository } from '@auth/domain/auth-repository';
 import { AuthSessionService } from '../services/auth-session';
 
 const PUBLIC_AUTH_ENDPOINTS = ['/auth/login', '/auth/register', '/auth/refresh'];

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { App } from './app';
-import { AuthStore } from '@features/auth/presentation/state/auth-store';
+import { AuthStore } from '@auth/presentation/state/auth-store';
 
 describe('App', () => {
   beforeEach(async () => {

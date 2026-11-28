@@ -30,6 +30,18 @@
       "@features/*": [
         "./src/app/features/*"
       ],
+      "@auth/*": [
+        "./src/app/features/auth/*"
+      ],
+      "@competitions/*": [
+        "./src/app/features/competitions/*"
+      ],
+      "@seasons/*": [
+        "./src/app/features/seasons/*"
+      ],
+      "@teams/*": [
+        "./src/app/features/teams/*"
+      ],
       "@environment": [
         "./src/environments/environment.ts"
       ],

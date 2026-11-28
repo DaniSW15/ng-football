@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { CreateTeamUsecase } from './create-team-usecase';
-import { TeamRepository } from '../domain/team-repository';
+import { TeamRepository } from '@teams/domain/team-repository';
 
 describe('CreateTeamUsecase', () => {
   let service: CreateTeamUsecase;

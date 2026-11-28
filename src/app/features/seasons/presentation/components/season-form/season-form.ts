@@ -3,8 +3,8 @@ import { form, FormField, FormRoot } from '@angular/forms/signals';
 import {
   CreateSeasonFormModel,
   CreateSeasonPayload,
-} from '../../../domain/season-model';
-import { createSeasonSchema } from '../../schemas/season.schema';
+} from '@seasons/domain/season-model';
+import { createSeasonSchema } from '@seasons/presentation/schemas/season.schema';
 
 @Component({
   selector: 'app-season-form',

@@ -6,7 +6,7 @@ import {
   SchemaPath,
   validate,
 } from '@angular/forms/signals';
-import { CreateTeamPayload, RenameTeamPayload } from '../../domain/team.model';
+import { CreateTeamPayload, RenameTeamPayload } from '@teams/domain/team.model';
 
 function applyTeamNameRules(namePath: SchemaPath<string>): void {
   required(namePath, { message: 'El nombre del equipo es obligatorio' });

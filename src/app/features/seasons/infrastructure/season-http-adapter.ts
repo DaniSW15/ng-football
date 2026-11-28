@@ -1,13 +1,13 @@
 import { inject, Service } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { SeasonRepository } from '../domain/season-repository';
+import { SeasonRepository } from '@seasons/domain/season-repository';
 import {
   CreateSeasonPayload,
   Enrollment,
   EnrollTeamPayload,
   Season,
-} from '../domain/season-model';
+} from '@seasons/domain/season-model';
 import {
   EnrollmentResponseDto,
   SeasonResponseDto,

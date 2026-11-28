@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 import {
   Competition,
   RenameCompetitionPayload,
-} from '../domain/competition-model';
-import { CompetitionRepository } from '../domain/competition-repository';
+} from '@competitions/domain/competition-model';
+import { CompetitionRepository } from '@competitions/domain/competition-repository';
 
 @Service({ autoProvided: false })
 export class RenameCompetitionUsecase {

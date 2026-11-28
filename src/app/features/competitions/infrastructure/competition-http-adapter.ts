@@ -1,12 +1,12 @@
 import { inject, Service } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { CompetitionRepository } from '../domain/competition-repository';
+import { CompetitionRepository } from '@competitions/domain/competition-repository';
 import {
   Competition,
   CreateCompetitionPayload,
   RenameCompetitionPayload,
-} from '../domain/competition-model';
+} from '@competitions/domain/competition-model';
 import { CompetitionResponseDto } from './dtos/competition-api-dto';
 import { CompetitionApiMapper } from './competition-api-mapper';
 

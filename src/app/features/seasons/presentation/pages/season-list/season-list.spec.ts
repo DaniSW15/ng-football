@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { SeasonList } from './season-list';
-import { SeasonsStore } from '../../state/seasons-store';
+import { SeasonsStore } from '@seasons/presentation/state/seasons-store';
 
 describe('SeasonList', () => {
   let component: SeasonList;

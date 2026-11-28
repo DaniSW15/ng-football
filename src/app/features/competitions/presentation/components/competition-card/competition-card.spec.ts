@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { CompetitionCard } from './competition-card';
-import { Competition } from '../../../domain/competition-model';
+import { Competition } from '@competitions/domain/competition-model';
 
 describe('CompetitionCard', () => {
   let component: CompetitionCard;

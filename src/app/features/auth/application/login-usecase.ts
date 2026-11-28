@@ -1,7 +1,7 @@
 import { inject, Service } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthSessionResult, LoginPayload } from '../domain/auth.model';
-import { AuthRepository } from '../domain/auth-repository';
+import { AuthSessionResult, LoginPayload } from '@auth/domain/auth.model';
+import { AuthRepository } from '@auth/domain/auth-repository';
 
 @Service({ autoProvided: false })
 export class LoginUsecase {

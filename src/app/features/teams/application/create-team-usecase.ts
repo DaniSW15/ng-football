@@ -1,7 +1,7 @@
 import { Service, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Team, CreateTeamPayload } from '../domain/team.model';
-import { TeamRepository } from '../domain/team-repository';
+import { Team, CreateTeamPayload } from '@teams/domain/team.model';
+import { TeamRepository } from '@teams/domain/team-repository';
 
 @Service({ autoProvided: false })
 export class CreateTeamUsecase {

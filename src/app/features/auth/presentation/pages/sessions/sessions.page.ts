@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { EmptyState, ErrorMessage, PageHeader } from '@shared';
-import { AuthStore } from '../../state/auth-store';
+import { AuthStore } from '@auth/presentation/state/auth-store';
 
 @Component({
   selector: 'app-sessions-page',

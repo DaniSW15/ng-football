@@ -3,7 +3,7 @@ import { signal } from '@angular/core';
 import { convertToParamMap, ActivatedRoute, provideRouter } from '@angular/router';
 import { of } from 'rxjs';
 import { SeasonDetailPage } from './season-detail';
-import { SeasonsStore } from '../../state/seasons-store';
+import { SeasonsStore } from '@seasons/presentation/state/seasons-store';
 
 describe('SeasonDetailPage', () => {
   let component: SeasonDetailPage;

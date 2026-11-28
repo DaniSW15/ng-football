@@ -12,7 +12,7 @@ import { provideRouter } from '@angular/router';
 import { of } from 'rxjs';
 import { authInterceptor } from './auth-interceptor';
 import { AuthSessionService } from '../services/auth-session';
-import { AuthRepository } from '@features/auth/domain/auth-repository';
+import { AuthRepository } from '@auth/domain/auth-repository';
 
 describe('authInterceptor', () => {
   let http: HttpClient;

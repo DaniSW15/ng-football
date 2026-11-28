@@ -10,7 +10,7 @@ export const TEAMS_ROUTES: Routes = [
         path: '',
         loadComponent: () =>
           import(
-            '@features/teams/presentation/pages/team-list/team-list.page'
+            '@teams/presentation/pages/team-list/team-list.page'
           ).then((m) => m.TeamListPage),
       },
     ],

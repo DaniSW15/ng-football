@@ -1,6 +1,6 @@
 import { Component, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Competition, CompetitionType, CompetitionScope } from '../../../domain/competition-model';
+import { Competition, CompetitionType, CompetitionScope } from '@competitions/domain/competition-model';
 
 @Component({
   selector: 'app-competition-card',

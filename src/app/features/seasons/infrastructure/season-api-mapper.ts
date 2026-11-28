@@ -3,7 +3,7 @@ import {
   Enrollment,
   EnrollTeamPayload,
   Season,
-} from '../domain/season-model';
+} from '@seasons/domain/season-model';
 import {
   CreateSeasonRequestDto,
   EnrollmentResponseDto,

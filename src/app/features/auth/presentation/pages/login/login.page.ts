@@ -2,9 +2,9 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { form, FormField, FormRoot } from '@angular/forms/signals';
 import { ErrorMessage, PageHeader } from '@shared';
-import { LoginPayload } from '../../../domain/auth.model';
-import { loginSchema } from '../../schemas/auth.schemas';
-import { AuthStore } from '../../state/auth-store';
+import { LoginPayload } from '@auth/domain/auth.model';
+import { loginSchema } from '@auth/presentation/schemas/auth.schemas';
+import { AuthStore } from '@auth/presentation/state/auth-store';
 
 @Component({
   selector: 'app-login-page',

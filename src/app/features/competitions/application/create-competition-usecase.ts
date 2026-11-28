@@ -1,7 +1,7 @@
 import { inject, Service } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Competition, CreateCompetitionPayload } from '../domain/competition-model';
-import { CompetitionRepository } from '../domain/competition-repository';
+import { Competition, CreateCompetitionPayload } from '@competitions/domain/competition-model';
+import { CompetitionRepository } from '@competitions/domain/competition-repository';
 
 @Service({ autoProvided: false })
 export class CreateCompetitionUsecase {

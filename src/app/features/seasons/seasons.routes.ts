@@ -10,14 +10,14 @@ export const SEASONS_ROUTES: Routes = [
         path: '',
         loadComponent: () =>
           import(
-            '@features/seasons/presentation/pages/season-list/season-list'
+            '@seasons/presentation/pages/season-list/season-list'
           ).then((m) => m.SeasonList),
       },
       {
         path: ':seasonId',
         loadComponent: () =>
           import(
-            '@features/seasons/presentation/pages/season-detail/season-detail'
+            '@seasons/presentation/pages/season-detail/season-detail'
           ).then((m) => m.SeasonDetailPage),
       },
     ],

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
 import { SessionsPage } from './sessions.page';
-import { AuthStore } from '../../state/auth-store';
+import { AuthStore } from '@auth/presentation/state/auth-store';
 
 describe('SessionsPage', () => {
   let component: SessionsPage;

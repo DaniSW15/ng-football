@@ -2,12 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { of } from 'rxjs';
 import { AuthStore } from './auth-store';
-import { LoginUsecase } from '../../application/login-usecase';
-import { RegisterUsecase } from '../../application/register-usecase';
-import { LogoutUsecase } from '../../application/logout-usecase';
-import { GetMeUsecase } from '../../application/get-me-usecase';
-import { GetSessionsUsecase } from '../../application/get-sessions-usecase';
-import { RevokeSessionUsecase } from '../../application/revoke-session-usecase';
+import { LoginUsecase } from '@auth/application/login-usecase';
+import { RegisterUsecase } from '@auth/application/register-usecase';
+import { LogoutUsecase } from '@auth/application/logout-usecase';
+import { GetMeUsecase } from '@auth/application/get-me-usecase';
+import { GetSessionsUsecase } from '@auth/application/get-sessions-usecase';
+import { RevokeSessionUsecase } from '@auth/application/revoke-session-usecase';
 
 describe('AuthStore', () => {
   let store: AuthStore;

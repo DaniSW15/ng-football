@@ -1,7 +1,7 @@
 import { inject, Service } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Enrollment } from '../domain/season-model';
-import { SeasonRepository } from '../domain/season-repository';
+import { Enrollment } from '@seasons/domain/season-model';
+import { SeasonRepository } from '@seasons/domain/season-repository';
 
 @Service({ autoProvided: false })
 export class GetEnrollmentsUsecase {

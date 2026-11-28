@@ -2,9 +2,9 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { form, FormField, FormRoot } from '@angular/forms/signals';
 import { ErrorMessage, PageHeader } from '@shared';
-import { RegisterPayload, USER_ROLES } from '../../../domain/auth.model';
-import { registerSchema } from '../../schemas/auth.schemas';
-import { AuthStore } from '../../state/auth-store';
+import { RegisterPayload, USER_ROLES } from '@auth/domain/auth.model';
+import { registerSchema } from '@auth/presentation/schemas/auth.schemas';
+import { AuthStore } from '@auth/presentation/state/auth-store';
 
 @Component({
   selector: 'app-register-page',

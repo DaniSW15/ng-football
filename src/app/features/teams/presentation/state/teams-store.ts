@@ -4,11 +4,11 @@ import {
   CreateTeamPayload,
   RenameTeamPayload,
   Team,
-} from '../../domain/team.model';
-import { GetTeamsUsecase } from '../../application/get-teams-usecase';
-import { CreateTeamUsecase } from '../../application/create-team-usecase';
-import { RenameTeamUsecase } from '../../application/rename-team-usecase';
-import { DeleteTeamUsecase } from '../../application/delete-team-usecase';
+} from '@teams/domain/team.model';
+import { GetTeamsUsecase } from '@teams/application/get-teams-usecase';
+import { CreateTeamUsecase } from '@teams/application/create-team-usecase';
+import { RenameTeamUsecase } from '@teams/application/rename-team-usecase';
+import { DeleteTeamUsecase } from '@teams/application/delete-team-usecase';
 
 export type LoadingState = 'idle' | 'loading' | 'loaded' | 'error';
 

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { SeasonCard } from './season-card';
-import { Season } from '../../../domain/season-model';
+import { Season } from '@seasons/domain/season-model';
 
 describe('SeasonCard', () => {
   let component: SeasonCard;

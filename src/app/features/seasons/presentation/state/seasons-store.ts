@@ -1,21 +1,21 @@
 import { computed, inject, Service, signal } from '@angular/core';
 import { firstValueFrom, forkJoin } from 'rxjs';
-import { Competition } from '@features/competitions/domain/competition-model';
-import { GetCompetitionsUsecase } from '@features/competitions/application/get-competitions-usecase';
-import { Team } from '@features/teams/domain/team.model';
-import { GetTeamsUsecase } from '@features/teams/application/get-teams-usecase';
+import { Competition } from '@competitions/domain/competition-model';
+import { GetCompetitionsUsecase } from '@competitions/application/get-competitions-usecase';
+import { Team } from '@teams/domain/team.model';
+import { GetTeamsUsecase } from '@teams/application/get-teams-usecase';
 import {
   CreateSeasonPayload,
   Enrollment,
   EnrollTeamPayload,
   Season,
-} from '../../domain/season-model';
-import { GetSeasonsByCompetitionUsecase } from '../../application/get-seasons-by-competition-usecase';
-import { GetSeasonUsecase } from '../../application/get-season-usecase';
-import { CreateSeasonUsecase } from '../../application/create-season-usecase';
-import { ActivateSeasonUsecase } from '../../application/activate-season-usecase';
-import { GetEnrollmentsUsecase } from '../../application/get-enrollments-usecase';
-import { EnrollTeamUsecase } from '../../application/enroll-team-usecase';
+} from '@seasons/domain/season-model';
+import { GetSeasonsByCompetitionUsecase } from '@seasons/application/get-seasons-by-competition-usecase';
+import { GetSeasonUsecase } from '@seasons/application/get-season-usecase';
+import { CreateSeasonUsecase } from '@seasons/application/create-season-usecase';
+import { ActivateSeasonUsecase } from '@seasons/application/activate-season-usecase';
+import { GetEnrollmentsUsecase } from '@seasons/application/get-enrollments-usecase';
+import { EnrollTeamUsecase } from '@seasons/application/enroll-team-usecase';
 
 export type LoadingState = 'idle' | 'loading' | 'loaded' | 'error';
 

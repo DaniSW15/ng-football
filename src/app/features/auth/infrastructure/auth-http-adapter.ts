@@ -1,14 +1,14 @@
 import { inject, Service } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { AuthRepository } from '../domain/auth-repository';
+import { AuthRepository } from '@auth/domain/auth-repository';
 import {
   AuthSession,
   AuthSessionResult,
   LoginPayload,
   RegisterPayload,
   User,
-} from '../domain/auth.model';
+} from '@auth/domain/auth.model';
 import {
   AuthTokenResponseDto,
   SessionResponseDto,

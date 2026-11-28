@@ -4,7 +4,7 @@ import {
   LoginPayload,
   RegisterPayload,
   User,
-} from '../domain/auth.model';
+} from '@auth/domain/auth.model';
 import {
   AuthTokenResponseDto,
   LoginRequestDto,

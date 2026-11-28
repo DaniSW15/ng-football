@@ -1,13 +1,13 @@
 import { computed, inject, Service, signal } from '@angular/core';
-import { CreateCompetitionUsecase } from '../../application/create-competition-usecase';
-import { GetCompetitionsUsecase } from '../../application/get-competitions-usecase';
-import { DeleteCompetitionUsecase } from '../../application/delete-competition-usecase';
-import { RenameCompetitionUsecase } from '../../application/rename-competition-usecase';
+import { CreateCompetitionUsecase } from '@competitions/application/create-competition-usecase';
+import { GetCompetitionsUsecase } from '@competitions/application/get-competitions-usecase';
+import { DeleteCompetitionUsecase } from '@competitions/application/delete-competition-usecase';
+import { RenameCompetitionUsecase } from '@competitions/application/rename-competition-usecase';
 import {
   Competition,
   CreateCompetitionPayload,
   RenameCompetitionPayload,
-} from '../../domain/competition-model';
+} from '@competitions/domain/competition-model';
 
 export type LoadingState = 'idle' | 'loading' | 'loaded' | 'error';
 

@@ -1,6 +1,6 @@
 import { inject, Service } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TeamRepository } from '../domain/team-repository';
+import { TeamRepository } from '@teams/domain/team-repository';
 
 @Service({ autoProvided: false })
 export class DeleteTeamUsecase {

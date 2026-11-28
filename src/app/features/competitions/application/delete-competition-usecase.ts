@@ -1,6 +1,6 @@
 import { inject, Service } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CompetitionRepository } from '../domain/competition-repository';
+import { CompetitionRepository } from '@competitions/domain/competition-repository';
 
 @Service({ autoProvided: false })
 export class DeleteCompetitionUsecase {

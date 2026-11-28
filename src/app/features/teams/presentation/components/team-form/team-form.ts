@@ -7,8 +7,8 @@ import {
   viewChild,
 } from '@angular/core';
 import { form, FormField, FormRoot } from '@angular/forms/signals';
-import { CreateTeamPayload } from '../../../domain/team.model';
-import { teamSchema } from '../../schemas/team.schema';
+import { CreateTeamPayload } from '@teams/domain/team.model';
+import { teamSchema } from '@teams/presentation/schemas/team.schema';
 
 @Component({
   selector: 'app-team-form',

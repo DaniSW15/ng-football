@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
 import { TeamListPage } from './team-list.page';
-import { TeamsStore } from '../../state/teams-store';
+import { TeamsStore } from '@teams/presentation/state/teams-store';
 
 describe('TeamListPage', () => {
   let component: TeamListPage;

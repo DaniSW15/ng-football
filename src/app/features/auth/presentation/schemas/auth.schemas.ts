@@ -5,7 +5,7 @@ import {
   required,
   schema,
 } from '@angular/forms/signals';
-import { LoginPayload, RegisterPayload } from '../../domain/auth.model';
+import { LoginPayload, RegisterPayload } from '@auth/domain/auth.model';
 
 /**
  * Esquema Signal Forms para Inicio de Sesión (POST /api/v1/auth/login)

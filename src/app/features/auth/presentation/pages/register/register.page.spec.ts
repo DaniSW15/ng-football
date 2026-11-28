@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { RegisterPage } from './register.page';
-import { AuthStore } from '../../state/auth-store';
+import { AuthStore } from '@auth/presentation/state/auth-store';
 
 describe('RegisterPage', () => {
   let component: RegisterPage;

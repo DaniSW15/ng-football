@@ -1,4 +1,4 @@
-import { UserRole } from '../../domain/auth.model';
+import { UserRole } from '@auth/domain/auth.model';
 
 /**
  * Request DTOs — el backend usa extra="forbid",

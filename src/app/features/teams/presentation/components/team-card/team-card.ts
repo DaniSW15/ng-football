@@ -8,8 +8,8 @@ import {
 } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { form, FormField, FormRoot } from '@angular/forms/signals';
-import { RenameTeamPayload, Team } from '../../../domain/team.model';
-import { renameTeamSchema } from '../../schemas/team.schema';
+import { RenameTeamPayload, Team } from '@teams/domain/team.model';
+import { renameTeamSchema } from '@teams/presentation/schemas/team.schema';
 
 @Component({
   selector: 'app-team-card',

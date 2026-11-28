@@ -5,7 +5,7 @@ import {
   required,
   schema,
 } from '@angular/forms/signals';
-import { CreateCompetitionFormModel } from '../../domain/competition-model';
+import { CreateCompetitionFormModel } from '@competitions/domain/competition-model';
 
 /**
  * Esquema de validación para Competiciones con Signal Forms.

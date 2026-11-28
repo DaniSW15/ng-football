@@ -1,8 +1,8 @@
 import { Component, input, output, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Season } from '../../../domain/season-model';
-import { formatCalendarDate } from '../../../domain/season-date.utils';
-import { getSeasonStatusLabel } from '../../../domain/season-status.utils';
+import { Season } from '@seasons/domain/season-model';
+import { formatCalendarDate } from '@seasons/domain/season-date.utils';
+import { getSeasonStatusLabel } from '@seasons/domain/season-status.utils';
 
 @Component({
   selector: 'app-season-card',

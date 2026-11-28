@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';
 import { TeamsStore } from './teams-store';
-import { GetTeamsUsecase } from '../../application/get-teams-usecase';
-import { CreateTeamUsecase } from '../../application/create-team-usecase';
-import { RenameTeamUsecase } from '../../application/rename-team-usecase';
-import { DeleteTeamUsecase } from '../../application/delete-team-usecase';
-import { Team } from '../../domain/team.model';
+import { GetTeamsUsecase } from '@teams/application/get-teams-usecase';
+import { CreateTeamUsecase } from '@teams/application/create-team-usecase';
+import { RenameTeamUsecase } from '@teams/application/rename-team-usecase';
+import { DeleteTeamUsecase } from '@teams/application/delete-team-usecase';
+import { Team } from '@teams/domain/team.model';
 
 describe('TeamsStore', () => {
   let store: TeamsStore;

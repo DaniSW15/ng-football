@@ -1,7 +1,7 @@
 import { inject, Service } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RegisterPayload, User } from '../domain/auth.model';
-import { AuthRepository } from '../domain/auth-repository';
+import { RegisterPayload, User } from '@auth/domain/auth.model';
+import { AuthRepository } from '@auth/domain/auth-repository';
 
 @Service({ autoProvided: false })
 export class RegisterUsecase {

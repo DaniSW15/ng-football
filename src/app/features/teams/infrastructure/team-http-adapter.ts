@@ -2,12 +2,12 @@ import { Service, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 
-import { TeamRepository } from '../domain/team-repository';
+import { TeamRepository } from '@teams/domain/team-repository';
 import {
   CreateTeamPayload,
   RenameTeamPayload,
   Team,
-} from '../domain/team.model';
+} from '@teams/domain/team.model';
 import { TeamResponseDto } from './dtos/team-api.dto';
 import { TeamApiMapper } from './team-api-mapper';
 

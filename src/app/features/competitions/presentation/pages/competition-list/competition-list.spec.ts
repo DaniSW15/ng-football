@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
 import { CompetitionListPage } from './competition-list';
-import { CompetitionsStore } from '../../state/competitions-store';
+import { CompetitionsStore } from '@competitions/presentation/state/competitions-store';
 
 describe('CompetitionListPage', () => {
   let component: CompetitionListPage;
